@@ -79,6 +79,8 @@ function setCoords(x, y) {
 /*
 window: alert, confirm, new Array()
 */
+
+
 // window.alert()
 // alert();
 // console.log(window.alert === alert, "alert");
@@ -129,7 +131,7 @@ const person3 = { name: "Alex" };
 const name3 = person_2.sayName.call(person3);
 
 // ------------------ 4 arrow ------------------------------
-// --- arrow --> не має this
+// --- arrow --> does not has this
 
 const arrow = () => {
   console.log(this, "this in arrow");
