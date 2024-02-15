@@ -189,9 +189,28 @@ console.log(result, "result");
 
 // -------------------------------------
 //--- carry
+
+const sum = (a, b) => {
+  return a + b;
+};
+
+sum(1, 2);
+sum(1, 3);
+
+const carrySum = (a) => (b) => sum(a, b);
+
+const sumPlusOne = carrySum(1);
+
+result = sumPlusOne(2);
+console.log(result, "result");
+
+result = sumPlusOne(3);
+console.log(result, "result");
+
 // https://translate.google.com/path
 
 async function loadData(protocol, domain, path) {
+  console.log(arguments, "arg");
   const url = protocol + "://" + domain + "/" + path;
 
   return await (await fetch(url)).json();
@@ -213,11 +232,52 @@ const carryLoadData = (protocol) => {
   };
 };
 
-// const loadByHttps = carryLoadData("https");
+const loadByHttps = carryLoadData("https");
+const loadByHTTP = carryLoadData("http");
+
 // const loadDummyJson = loadByHttps("dummyjson.com");
+// const loadDummyJson = carryLoadData("https")("dummyjson.com");
 
-const loadDummyJson = carryLoadData("https")("dummyjson.com");
+// partial
 
-loadDummyJson("product").then((v) => console.log(v.products));
-loadDummyJson("users").then((v) => console.log(v.users));
-loadDummyJson("posts").then((v) => console.log(v.posts));
+function partialLoadData(callback, protocol, domain) {
+  return function (path) {
+    return callback(protocol, domain, path);
+  };
+}
+
+// const loadDummyJson = partialLoadData(loadData, "https", "dummyjson.com");
+
+// ------- bind --------
+
+// const loadDummyJson = loadData.bind(null, "https", "dummyjson.com");
+
+// loadDummyJson("product", ).then((v) => console.log(v.products));
+// loadDummyJson("users").then((v) => console.log(v.users));
+// loadDummyJson("posts").then((v) => console.log(v.posts));
+
+// ---------
+
+function translate(language, word) {
+  // to do
+}
+
+translate("ukr", "aaaa");
+translate("ukr", "hello world");
+translate("ukr", "frizz briiz");
+
+function partial(translate, language) {
+  return (characters) => {
+    return translate(language, characters);
+  };
+}
+
+// const translateENG = partial(translate, 'eng');
+// const translateUKR = partial(translate, 'ukr');
+
+const translateENG = translate.bind(null, "eng");
+const translateUKR = translate.bind(null, "ukr");
+
+translateUKR("aaaa");
+translateUKR("hello world");
+translateENG("hello world");
