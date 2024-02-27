@@ -182,6 +182,7 @@ const obj2 = {
 
 const history = {
   records: [],
+  
   add(item) {
     if (item) {
       this.records.push(item);
