@@ -57,7 +57,7 @@ bar();
 var user = {
   firstName: "Вася",
   sayHi: function () {
-    console.log(this);
+
     console.log(this.firstName);
   },
 };
