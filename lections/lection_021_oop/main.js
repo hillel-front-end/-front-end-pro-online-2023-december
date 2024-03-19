@@ -86,14 +86,20 @@ function HTMLElement(tagName, className, id) {
 }
 
 HTMLElement.prototype.render = function() {
-    console.log('Render --> ' + this.tagName)
+    console.log('Render from HTMLElement --> ' + this.tagName)
 }
 
 // console.log(HTMLElement.prototype.__proto__ = null, 'HTMLElement.prototype')
 
-function HTMLImg(src, className, id) {
+function HTMLImg(src, className, id, flag) {
     mySuper(HTMLElement, this, 'img', className, id)// HTMLElement.apply(this, [img', className, id]);
     this.src = src;
+
+    if (flag) {
+        this.render = function() {
+            console.log('OWN IMG RENDER');
+        }
+    }
 }
 
 // HTMLImg.prototype = Object.create(HTMLElement.prototype); // { __proto__: HTMLElement.prototype }
@@ -106,19 +112,20 @@ HTMLImg.prototype.showPicture = function() {
 
 
 // HTMLImg.prototype.render = function() {
-//     console.log('Render --> ' + this.tagName)
+//     console.log('!!Render HTMLImg--> ' + this.tagName)
 // }
 
-const img = new HTMLImg('http://google-drive', 'picture-site', 'picture-id');
+const img = new HTMLImg('http://google-drive', 'picture-site', 'picture-id', true);
+const img2 = new HTMLImg('http://google-drive', 'picture-site', 'picture-id',);
 
 // img.showPicture();
 // img.redirect();
 // img.render();
 
-console.log(img, 'img');
+// console.log(img, 'img');
 
 img.render();
-
+img2.render();
 
 
 /// ------- HTML Anchor ---------
@@ -139,17 +146,17 @@ HTMLAnchor.prototype.redirect = function() {
 
 const a = new HTMLAnchor('http://web-site', 'web-site', 'some-id');
 
-console.log(a, 'a');
+// console.log(a, 'a');
 
-a.render();
+// a.render();
 // console.log(a2, 'a2');
 
 
 
-console.log(HTMLImg instanceof Object)
-console.log(img instanceof Object)
-console.log([] instanceof Object)
+// console.log(HTMLImg instanceof Object)
+// console.log(img instanceof Object)
+// console.log([] instanceof Object)
 
-// 
-console.log(Object.prototype.toString)
-console.log([].toString)
+// // 
+// console.log(Object.prototype.toString)
+// console.log([].toString)
