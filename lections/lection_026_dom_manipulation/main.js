@@ -148,6 +148,158 @@ nodes.forEach((node) =>
   node.addEventListener("click", () => console.log("---click---"))
 );
 
-// ----- optimization ----
+// ----- browser optimization ----
+
+const box = document.querySelector(".box");
+
+//------ layout
+
+// bad
+box.style.width = "100px";
+box.style.height = "100px";
+box.style.margin = "10px";
+box.style.left = "100px";
+
+// good
+
+box.cssText = 'width=100px;height=100px;margin="100";lefth="100px";';
+
+//----- Print
+
+//----
+
+box.classList.add("box-style");
+
+// ----------- Buffer
+
+box.style.color = "red";
+box.style.bacgroundColor = "black";
+box.style.visibility = "visible";
+
+box.style.width = "100px";
+
+//box.clientWidth\Height, offsetTop/Left, offsetHeight
+
+box.style.height = "100px";
+box.style.margin = "10px";
+box.style.left = "100px";
+
+const width = box.clientWidth;
+const height = box.clientHeight;
+
+//------
+let coord = box.offsetLeft; // 100
+
+coord++;
+
+box.style.left = coord + "px"; //101
+box.style.top = coord + "px";//101
+
+if (coord > 350) {
+  // stopAnimation();
+}
+
+
+//-----------------
+// append(), remove()
+
+
+// ------->> create
+
+// bad
+// const ul = document.createElement('ul');
+
+// document.body.prepand(ul);
+
+// [1,2,3].forEach((item) => {
+//   const li = document.createElement('li');
+//   ul.append(li);
+// });
+
+
+// good
+
+// const ul = document.createElement('ul');
+
+// [1,2,3].forEach((item) => {
+//   const li = document.createElement('li');
+//   ul.append(li);
+// });
+
+
+// document.body.prepand(ul);
+
+
+// -----> existing
+
+const products_2 = document.querySelector('.products');
+
+
+// ----> exmp-1
+
+// products.classList.add('hidden');
+
+// const items_2 = [1,2,3].map((item) => {
+//   const div = document.createElement('div');
+//   // ul.append(div);
+//   return div;
+// });
+
+
+// products.append(...items);
+
+// products.classList.remove('hidden');
+
+// ---- exmp-2
+
+/*
+<div class="products"><
+ <div class="container">
+   <div class="product"></div>
+   <div class="product"></div>
+  </div>
+</div>
+*/
+// const container = document.createElement('div');
+const fragment =  document.createDocumentFragment();
+
+const items_2 = [1,2,3].map((item) => {
+  const div = document.createElement('div');
+  // fragment.append(div);
+  return div;
+});
+
+
+// container.append(...items_2);
+// products.append(container);
+
+
+/*
+<div class="products">
+   <div class="product"></div>
+   <div class="product"></div>
+</div>
+*/
+
+// fragment.append(...items_2)
+// products.append(fragment);
+
+
+
+// --- exmp2
+
+const prodcutsClone = products.cloneNode();
+
+const items_3 = [1,2,3].map((item) => {
+  const div = document.createElement('div');
+  // prodcutsClone.append(div);
+  return div;
+});
+
+prodcutsClone.append(...items_3);
+
+// products.replaceWith(prodcutsClone);
+
+
 
 
