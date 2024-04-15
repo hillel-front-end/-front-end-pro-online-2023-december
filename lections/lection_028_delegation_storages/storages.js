@@ -65,3 +65,5 @@ console.log(JSON.stringify(person));
 localStorage.setItem("profile", JSON.stringify(person));
 
 console.log(localStorage.getItem("profile"));
+
+//-------------------------

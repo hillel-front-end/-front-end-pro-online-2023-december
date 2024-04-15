@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <!-- <script src="delegate.js" defer></script> -->
-    <script src="storages.js"></script>
+    <script src="storages.js" defer></script>
     <style>
 
         * {
@@ -29,6 +29,10 @@
             border: 1px solid red;
             margin-bottom: 10px;
         }
+
+        .hidden {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -38,5 +42,28 @@
         <li class="list-item__save" data-action="save">save</li>
         <li class="list-item__edit" data-action="edit">edit</li>
     </ul> -->
+
+    <div class="main-page">
+        Main Page
+        <button>Logout</button>
+    </div>
+
+    <div class="sign-in-page">
+        <form action="#">
+            <label>
+                First name
+                <input type="text" name="firstName" id="firstName">
+            </label>
+            <label>
+                Last name
+                <input type="text" name="firstName" id="firstName">
+            </label>
+            <label>
+                Age
+                <input type="text" name="firstName" id="firstName">
+            </label>
+            <button> submit </button>
+        </form>
+    </div>
 </body>
 </html>

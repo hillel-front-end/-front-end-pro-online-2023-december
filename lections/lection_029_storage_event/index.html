@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="./storage-additional.js" defer></script> -->
+    <script src="storage.js" defer></script>
+    <style>
+        #sign-in {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        #sign-in button {
+            align-self: flex-start;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="sign-in-page">
+        <form action="#" id="sign-in">
+            <label>
+                First Name
+                <input type="text" name="first-name">
+            </label>
+    
+            <label>
+                Last Name
+                <input type="text" name="last-name">
+            </label>
+    
+            <select type="text" name="gernder">
+                <option selected disabled>choose</option>
+                <option value="1">man</option>
+                <option value="2">woman</option>
+            </select>
+    
+            <button>send</button>
+        </form>
+    </div>
+
+    <div class="main-page">
+        Main Page
+        <button>logout</button>
+    </div>
+
+
+</body>
+</html>
