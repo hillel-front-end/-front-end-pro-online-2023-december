@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 import Header from "./components/Header";
 import UserInput from "./components/UserInput";
 import Result from "./components/Result";
+import loanCalculatorService from "./service/LoanCalculator.service";
 
 const initialUserInput = {
-  price: 100000,
+  price: 0,
   firstPayment: 0,
   term: 2,
   rate: 10,
@@ -17,12 +18,32 @@ function App() {
     setUserInput((prevUserInput) => ({ ...prevUserInput, [name]: +value }));
   }
 
+  const onReload = useCallback(() => {
+    console.log(userInput, "userInput in useCallback");
+ const [error, setEror] = useState({});
+    setUserInput((p) => ({ ...p }));
+  }, [userInput.price, userInput.term]); // useCallback(func, deps[])
+
+  console.log(userInput, "userInput in App");
+
+  // useMemo
+  const schedual = useMemo(() => {
+    console.log("---calculate---");
+    return loanCalculatorService.paymentScheduleClassic({
+      creditSum: userInput.price,
+      interestRateMonth: userInput.rate / 100 / 12,
+      creditPeriod: +userInput.term,
+    });
+  }, [userInput.price, userInput.term]); // useMemo(fn, [])
+
+  console.log("---Render App --", schedual);
+
   return (
     <div className="app">
-      <Header className="text-center" />
+      <Header className="text-center" onReload={onReload} />
       <main id="main">
         <UserInput userInput={userInput} onChange={onChangeHandler} />
-        <Result userInput={userInput} />
+        <Result schedual={schedual} />
       </main>
     </div>
   );

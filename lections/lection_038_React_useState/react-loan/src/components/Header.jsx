@@ -1,5 +1,7 @@
 import Logo from "../assets/react.svg";
 import classes from "./Header.module.css";
+import { memo } from "react";
+// memo
 
 /*
     props = {
@@ -10,13 +12,13 @@ import classes from "./Header.module.css";
     }
 */
 const Header = (props) => {
-  console.log("----header----");
+  console.log("----Reader Header----", props);
   return (
     <header className={`${classes.header} ${props.className}`}>
-      <img src={Logo} alt="" className={classes.img} />
+      <img src={Logo} alt="" className={classes.img} onClick={props.onReload} />
       <h1 className={classes.title}>Кредитний калькулятор</h1>
     </header>
   );
 };
 
-export default Header;
+export default memo(Header); // prev === current

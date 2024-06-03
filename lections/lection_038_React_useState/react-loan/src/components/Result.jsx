@@ -1,5 +1,4 @@
 import Table from "../UI/Table";
-import loanCalculatorService from "../service/LoanCalculator.service";
 
 const COL_DESC = {
   month: "Місяць",
@@ -17,13 +16,8 @@ const COLUM_ORDER = [
   "summaryMonthlyPayment",
 ];
 
-const Result = ({ userInput }) => {
-  const schedual = loanCalculatorService.paymentScheduleClassic({
-    creditSum: userInput.price,
-    interestRateMonth: userInput.rate / 100 / 12,
-    creditPeriod: +userInput.term,
-  });
-
+const Result = ({ schedual }) => {
+  console.log("---Result---");
   const thead = (
     <tr>
       {COLUM_ORDER.map((col, index) => (
